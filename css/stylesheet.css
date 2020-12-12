@@ -1,0 +1,11 @@
+.firstContainer {
+    background-color: rgb(244, 241, 222);
+    padding:0.01em 16px
+
+}
+
+.secContainer {
+    background-color: rgb(129, 178, 154);
+    padding:0.01em 16px;
+    border-radius: 15px;
+    padding: 15px;
