@@ -8,7 +8,7 @@ const newTaskForm = document.querySelector('#newTaskForm');
 newTaskForm.addEventListener('submit', (event) => {
     // Prevent default action
     event.preventDefault();
-
+   
     // Select the inputs
     const newTaskNameInput = document.querySelector('#newTaskNameInput');
     const newTaskDescription = document.querySelector('#newTaskDescription');
