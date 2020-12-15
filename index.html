@@ -35,18 +35,18 @@
                 <div class="form-group">
           
                   <label for="newTaskNameInput">Task Name</label>
-                  <input type="text" class="form-control" id="newTaskNameInput" placeholder="Enter task name" required>
+                  <input type="text" class="form-control" id="newTaskNameInput" placeholder="Enter task name" >
                 </div>
           
                 <div class="form-group">
           
                   <label for="newTaskDescription">Task Description</label>
-                  <textarea class="form-control" id="newTaskDescription" placeholder="Enter task description" required></textarea>
+                  <textarea class="form-control" id="newTaskDescription" placeholder="Enter task description" ></textarea>
                 </div>
           
                 <div class="form-group">
                   <label for="newTaskAssignedTo">Task Assgined To</label>
-                  <select multiple class="form-control" id="newTaskAssignedTo" required>
+                  <select multiple class="form-control" id="newTaskAssignedTo" >
                     <option>Lance</option>
                     <option>Hasan</option>
                     <option>Lisa</option>
@@ -58,14 +58,12 @@
                 <div class="form-group">
                   <!-- Date input -->
                   <label class="control-label" for="newTaskDueDate"> Due Date</label>
-                  <input class="form-control" id="newTaskDueDate" placeholder="MM/DD/YYY" type="date" required>
+                  <input class="form-control" id="newTaskDueDate" placeholder="MM/DD/YYY" type="date" >
                 </div>
-          
-          
-          
+                   
                 <div class="form-group">
                   <label for="taskStatus">Task Status</label>
-                  <select class="form-control" id="taskStatus" required>
+                  <select class="form-control" id="taskStatus" >
                     <option>TO DO</option>
                     <option>IN PROGRESS</option>
                     <option>REVIEW</option>
@@ -169,19 +167,10 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#sidebar").mCustomScrollbar({
-                theme: "minimal"
-            });
+    <script src="index.js">
 
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar, #content').toggleClass('active');
-                $('.collapse.in').toggleClass('in');
-                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            });
-        });
     </script>
+    
 
 </body>
 
