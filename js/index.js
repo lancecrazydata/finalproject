@@ -1,6 +1,6 @@
 // Select the New Task Form
 
-
+const task_manneg=require('./taskManager.js');
 
 const newTaskForm = document.querySelector('#newTaskForm');
 
@@ -71,6 +71,16 @@ $(document).ready(function () {
         // in our CSS
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
+
+    // Add the task to the task manager
+    TaskManager.addTask(name, description, assignedTo, dueDate);
+
+    // Clear the form
+    newTaskNameInput.value = '';
+    newTaskDescription.value = '';
+    newTaskAssignedTo.value = '';
+    newTaskDueDate.value = '';
+
 
 });
 // $(document).ready(function () {
