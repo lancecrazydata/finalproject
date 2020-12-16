@@ -1,8 +1,26 @@
 // Select the New Task Form
-
-const task_manneg=require('./taskManager.js');
+import {TaskManager} from "./taskManager.js"
+// const TaskManager=require("./taskManager.js");
+const taskManager=new TaskManager(0);
 
 const newTaskForm = document.querySelector('#newTaskForm');
+
+$(document).ready(function () {
+
+    $("#sidebar").mCustomScrollbar({
+         theme: "minimal"
+    });
+
+    $('#sidebarCollapse').on('click', function () {
+        // open or close navbar
+        $('#sidebar').toggleClass('active');
+        // close dropdowns
+        $('.collapse.in').toggleClass('in');
+        // and also adjust aria-expanded attributes we use for the open/closed arrows
+        // in our CSS
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});
 
 // Add an 'onsubmit' event listener
 newTaskForm.addEventListener('submit', (event) => {
@@ -17,13 +35,14 @@ newTaskForm.addEventListener('submit', (event) => {
     const errorMessage = document.querySelector('#alertMessage');
 
 
-    const name = newTaskNameInput.value;
+    const taskName = newTaskNameInput.value;
     const description = newTaskDescription.value;
     const assignedTo = newTaskAssignedTo.value;
     const dueDate = newTaskDueDate.value;
+console.log(taskName);
 
     let errorString = ""
-    if (!validFormFieldInput(name)) {
+    if (!validFormFieldInput(taskName)) {
         errorString += "Invalid name input" + "<br>";
 
     }
@@ -50,30 +69,17 @@ newTaskForm.addEventListener('submit', (event) => {
         errorMessage.innerHTML = errorString;
         errorMessage.style.display = "block";
     }
-});
+
 
 function validFormFieldInput(data) {
     return data !== null && data !== '';
 }
 
-$(document).ready(function () {
 
-    $("#sidebar").mCustomScrollbar({
-         theme: "minimal"
-    });
-
-    $('#sidebarCollapse').on('click', function () {
-        // open or close navbar
-        $('#sidebar').toggleClass('active');
-        // close dropdowns
-        $('.collapse.in').toggleClass('in');
-        // and also adjust aria-expanded attributes we use for the open/closed arrows
-        // in our CSS
-        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    });
 
     // Add the task to the task manager
-    TaskManager.addTask(name, description, assignedTo, dueDate);
+    taskManager.addTask(taskName, description, assignedTo, dueDate);
+console.log(taskManager.tasks);
 
     // Clear the form
     newTaskNameInput.value = '';

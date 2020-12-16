@@ -1,12 +1,13 @@
 
 // Create a TaskManager class
-class TaskManager {
+export class TaskManager {
     // Set up the tasks and currentId property in the contructor
     constructor(currentId = 0) {
         this.tasks = [];
         this.currentId = currentId;
     } 
 
+    
     // Create the addTask method
 addTask(name, description, assignedTo, dueDate) {
         const task = {
@@ -25,7 +26,8 @@ addTask(name, description, assignedTo, dueDate) {
     }
 }
 
-module.exports=TaskManager.tasks;
+
+// module.exports=TaskManager;
 // const x=new TaskManager();
 // let y=x.addTask('mike','sdedewfw','Lance','2900');
 // console.log(y);
