@@ -3,6 +3,8 @@ import {TaskManager} from "./taskManager.js"
 // const TaskManager=require("./taskManager.js");
 const taskManager=new TaskManager(0);
 
+
+
 const newTaskForm = document.querySelector('#newTaskForm');
 
 $(document).ready(function () {
@@ -32,12 +34,14 @@ newTaskForm.addEventListener('submit', (event) => {
     const newTaskDescription = document.querySelector('#newTaskDescription');
     const newTaskAssignedTo = document.querySelector('#newTaskAssignedTo');
     const newTaskDueDate = document.querySelector('#newTaskDueDate');
+    const newStatus=document.querySelector('#taskStatus');
     const errorMessage = document.querySelector('#alertMessage');
 
 
     const taskName = newTaskNameInput.value;
     const description = newTaskDescription.value;
     const assignedTo = newTaskAssignedTo.value;
+    const status=newStatus.value;
     const dueDate = newTaskDueDate.value;
 console.log(taskName);
 
@@ -78,9 +82,9 @@ function validFormFieldInput(data) {
 
 
     // Add the task to the task manager
-    taskManager.addTask(taskName, description, assignedTo, dueDate);
-console.log(taskManager.tasks);
+    taskManager.addTask(taskName, description, assignedTo, dueDate,status);
 
+    taskManager.render();
     // Clear the form
     newTaskNameInput.value = '';
     newTaskDescription.value = '';
