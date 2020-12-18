@@ -1,15 +1,31 @@
-const createTaskHtml = (taskName, description, assignedTo, dueDate, status) => `
-   <div class="card m-2" style="width: 18rem;display:inline-block; float:left">
+function statusColor(status) {
+    switch(status) {
+        case "DONE":return "badge-primary";
+        break; 
+        case "TO DO":return "badge-success";
+        break;
+        case "IN PROGRESS":return "badge-secondary";
+        break;
+        case "REVIEW":return "badge-info";
+        break;
+}}
+
+
+const createTaskHtml = (id,taskName, description, assignedTo, dueDate, status) => `
+   <div class="card m-2" data-task-id=${id} style="width: 18rem;display:inline-block; float:left">
 <div class="card-body">
     <h5 class="card-title">${taskName}</h5>
     <p class="card-text">Description: ${description}</p>
     <p class="card-text">Assigned To: ${assignedTo}</p>
     <p class="card-text">Due Date: ${dueDate}</p>
-    <span class="badge badge-primary">${status}</span>
+    <span class="badge ${statusColor(status)}">${status}</span>
     <a href="#" class="btn btn-primary">Delete</a>
+  
+    <button class="btn btn-outline-success mt-2 done-button ${status === 'DONE'?'invisible':'visible'}">Mark As Done</button>
+    
 </div>
 </div>`;
-
+console.log(createTaskHtml);
 
 // Create a TaskManager class
 
@@ -37,7 +53,25 @@ addTask(name, description, assignedTo, dueDate,status) {
         this.tasks.push(task);
 
     }
+    getTaskById(taskId) {
+        // Create a variable to store the found task
+        let foundTask;
 
+        // Loop over the tasks and find the task with the id passed as a parameter
+        for (let i = 0; i < this.tasks.length; i++) {
+            // Get the current task in the loop
+            const task = this.tasks[i];
+
+            // Check if its the right task by comparing the task's id to the id passed as a parameter
+            if (task.id === taskId) {
+                // Store the task in the foundTask variable
+                foundTask = task;
+            }
+        }
+
+        // Return the found task
+        return foundTask;
+    }
     render() {
         // Create an array to store the tasks' HTML
         const tasksHtmlList = [];
@@ -52,7 +86,7 @@ addTask(name, description, assignedTo, dueDate,status) {
             const formattedDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 
             // Create the task html
-            const taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status);
+            const taskHtml = createTaskHtml(task.id, task.name, task.description, task.assignedTo, formattedDate, task.status);
 
             // Push it to the tasksHtmlList array
             tasksHtmlList.push(taskHtml);
@@ -70,4 +104,4 @@ addTask(name, description, assignedTo, dueDate,status) {
 }
 
 
-// module.exports=TaskManager;
+
