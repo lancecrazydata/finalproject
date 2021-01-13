@@ -4,6 +4,11 @@ import {TaskManager} from "./taskManager.js"
 const taskManager=new TaskManager(0);
 
 
+// Load the tasks from localStorage
+taskManager.load();
+
+// Render the tasks to the page
+taskManager.render();
 
 const newTaskForm = document.querySelector('#newTaskForm');
 
@@ -83,7 +88,7 @@ function validFormFieldInput(data) {
 
     // Add the task to the task manager
     taskManager.addTask(taskName, description, assignedTo, dueDate,status);
-
+    taskManager.save();
     taskManager.render();
     // Clear the form
     newTaskNameInput.value = '';
@@ -93,6 +98,10 @@ function validFormFieldInput(data) {
 
 
 });
+
+
+
+
 
 // Select the Tasks List
 const tasksList=document.querySelector('#tasksList');
@@ -111,7 +120,8 @@ tasksList.addEventListener('click', (event) => {
 
         // Update the task status to 'DONE'
         task.status = 'DONE';
-
+        //save to local storage
+        taskManager.save();
         // Render the tasks
         taskManager.render();
     }
