@@ -19,7 +19,7 @@ const createTaskHtml = (id,taskName, description, assignedTo, dueDate, status) =
     <p class="card-text">Assigned To: ${assignedTo}</p>
     <p class="card-text">Due Date: ${dueDate}</p>
     <span class="badge ${statusColor(status)}">${status}</span>
-    <a href="#" class="btn btn-primary">Delete</a>
+    <a href="#" class="btn btn-outline-danger delete-button">Delete</a>
   
     <button class="btn btn-outline-success mt-2 done-button ${status === 'DONE'?'invisible':'visible'}">Mark As Done</button>
     
@@ -53,6 +53,26 @@ addTask(name, description, assignedTo, dueDate,status) {
         this.tasks.push(task);
 
     }
+deleteTask(taskId) {
+    //create an empty array and store it in a new variable, newTasks
+const newTasks=[];
+// Loop over the tasks
+for (let i = 0; i < this.tasks.length; i++) {
+    // Get the current task in the loop
+    const task = this.tasks[i];
+
+    // Check if the task id is not the task id passed in as a parameter
+    if (task.id !== taskId) {
+        // Push the task to the newTasks array
+        newTasks.push(task);
+    }
+   
+}
+ // Set this.tasks to newTasks
+ this.tasks = newTasks;
+}
+
+
     getTaskById(taskId) {
         // Create a variable to store the found task
         let foundTask;
