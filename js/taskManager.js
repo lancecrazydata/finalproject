@@ -29,7 +29,7 @@ console.log(createTaskHtml);
 
 // Create a TaskManager class
 
-export class TaskManager {
+class TaskManager {
     // Set up the tasks and currentId property in the contructor
     constructor(currentId = 0) {
         this.tasks = [];
@@ -158,3 +158,5 @@ load() {
             }
         }
     }
+
+    module.exports=TaskManager
