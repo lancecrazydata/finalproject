@@ -158,5 +158,7 @@ load() {
             }
         }
     }
-
+if (typeof module != "undefined") {
     module.exports=TaskManager
+}
+    
